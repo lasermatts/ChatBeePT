@@ -1,5 +1,6 @@
 import requests
 import json
+from datetime import datetime
 
 # URL to fetch the top story IDs from HackerNews
 TOP_STORIES_URL = "https://hacker-news.firebaseio.com/v0/topstories.json?print=pretty"
@@ -24,7 +25,10 @@ def main():
         response = requests.get(TOP_STORIES_URL)
         if response.status_code == 200:
             top_stories = response.json()
-            print("\nTop 5 HackerNews Stories:\n")
+            # Getting the current time
+            current_time = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+            # Displaying the top 5 stories along with the current time
+            print(f"\nTop 5 HackerNews Stories [{current_time}]:\n")
             for i, story_id in enumerate(top_stories[:5]):
                 print(f"Story {i + 1}:")
                 print(get_story_detail(story_id))
