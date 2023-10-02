@@ -1,3 +1,4 @@
 smtplib
 bc
 dotenv
+requests
